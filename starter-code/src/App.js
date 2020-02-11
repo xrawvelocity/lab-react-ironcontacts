@@ -1,21 +1,70 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+// import logo from './logo.svg';
 import './App.css';
+import contacts from './contacts.json';
 
 class App extends Component {
+
+  // constructor(props){
+  //   super(props)
+  //   this.state ={
+  //     fiveContacts: contacts.slice(0, 5)
+  //   }
+  // }
+
+  state = {
+    fiveContacts: contacts.slice(0, 5)
+  }
+
+  showFiveContacts = () => {
+    // console.log(this.state.fiveContacts)
+    return this.state.fiveContacts.map((eachContact, index) => {
+      return (
+        <tr key={index}>
+          <th><img src={eachContact.pictureUrl} alt={eachContact.name}/></th>
+          <th>{eachContact.name}</th>
+          <th>{eachContact.popularity}</th>
+        </tr>
+      )
+  })
+  }
+  
   render() {
+    console.log("Render App.js")
+    console.log(this.state.fiveContacts)
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+        <h1>Table</h1>
+        <table>
+          <thead>
+            <tr>
+              <th>Picture</th>
+              <th>Name</th>
+              <th>Popularity</th>
+            </tr>
+          </thead>
+          <tbody>
+            {this.showFiveContacts()}
+          </tbody>
+        </table>
       </div>
     );
   }
 }
 
 export default App;
+
+
+// Class Vikings (
+//   constructor(){
+// this.someArrNameState = contacts.slice(0, 5)
+// }
+
+// fiveViking(){
+
+// }
+
+//  showFiveViking(){
+    // this.fiveVikings()
+// }
+// )
